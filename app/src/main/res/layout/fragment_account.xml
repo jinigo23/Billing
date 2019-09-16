@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    tools:context=".fragment.AccountFragment">
+
+    <LinearLayout
+        android:id="@+id/account_cardview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_default"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/margin_20"
+        android:paddingBottom="@dimen/margin_20"
+        android:layout_margin="@dimen/margin_20"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/account_profile_image"
+            android:layout_width="@dimen/image_size_100"
+            android:layout_height="@dimen/image_size_100"
+            android:src="@drawable/account_person"
+            android:tint="@color/app_default_color"
+            android:background="@drawable/circle_shape" />
+
+        <TextView
+            android:id="@+id/account_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_10"
+            android:text="Name"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_18" />
+
+        <TextView
+            android:id="@+id/account_phone_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_10"
+            android:text="9988776655"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_18" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_20"
+        android:layout_marginTop="@dimen/margin_20"
+        android:layout_marginRight="@dimen/margin_20"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/account_cardview">
+
+        <Button
+            android:id="@+id/button_account_change_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/buy_button"
+            android:ems="15"
+            android:gravity="left|center_vertical"
+            android:paddingLeft="@dimen/margin_20"
+            android:drawableLeft="@drawable/account_password_outline"
+            android:drawableRight="@drawable/arrow_right"
+            android:drawableTint="@color/app_default_color"
+            android:drawablePadding="@dimen/edittext_padding_10"
+            android:textAllCaps="false"
+            android:text="@string/account_change_password" />
+
+        <Button
+            android:id="@+id/button_account_payment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_20"
+            android:background="@drawable/buy_button"
+            android:ems="15"
+            android:gravity="left|center_vertical"
+            android:paddingLeft="@dimen/margin_20"
+            android:drawableLeft="@drawable/account_payment"
+            android:drawableRight="@drawable/arrow_right"
+            android:drawableTint="@color/app_default_color"
+            android:drawablePadding="@dimen/edittext_padding_10"
+            android:textAllCaps="false"
+            android:text="@string/account_payment" />
+
+        <Button
+            android:id="@+id/button_account_delivery_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_20"
+            android:background="@drawable/buy_button"
+            android:ems="15"
+            android:gravity="left|center_vertical"
+            android:paddingLeft="@dimen/margin_20"
+            android:drawableLeft="@drawable/account_location_on"
+            android:drawableRight="@drawable/arrow_right"
+            android:drawableTint="@color/app_default_color"
+            android:drawablePadding="@dimen/edittext_padding_10"
+            android:textAllCaps="false"
+            android:text="@string/account_delivery_address" />
+
+        <Button
+            android:id="@+id/button_account_logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_20"
+            android:background="@drawable/buy_button"
+            android:ems="15"
+            android:gravity="left|center_vertical"
+            android:paddingLeft="@dimen/margin_20"
+            android:paddingRight="@dimen/margin_20"
+            android:drawableLeft="@drawable/account_logout_to_app"
+            android:drawableTint="@color/app_default_color"
+            android:drawablePadding="@dimen/edittext_padding_10"
+            android:textAllCaps="false"
+            android:text="@string/account_logout" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

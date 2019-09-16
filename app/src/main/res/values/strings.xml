@@ -1,0 +1,24 @@
+<resources>
+    <string name="store_name">Gia</string>
+    <string name="title_activity_menu">MenuActivity</string>
+    <string name="title_activity_cart">Cart</string>
+    <string name="title_activity_splash">Gia</string>
+
+
+    <string name="welcome_to_app">Welcome to Gia</string>
+    <string name="welcome_started_app">Let\'s get started</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="signup_created">Account created successfully</string>
+    <string name="signup_error">Enter the details correctly</string>
+    <string name="signup_user_name_error">Should be minimum 3 letters</string>
+
+    <!--    Account activity-->
+    <string name="account_phone_number">Phone number</string>
+    <string name="account_change_password">Change Password</string>
+    <string name="account_payment">Payment</string>
+    <string name="account_delivery_address">Delivery Address</string>
+    <string name="account_logout">Logout</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

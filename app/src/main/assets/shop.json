@@ -1,0 +1,19 @@
+{
+  "shop": [
+    {
+      "name": "Fashion Floral Print V Neck Tied Waist Slip Mini Dress",
+      "price": "14.99",
+      "vendor": "joyshoetique"
+    },
+    {
+      "name": "Women Sexy Stripped Low Cut One-Piece swimwear",
+      "price": "12.99",
+      "vendor": "joyshoetique"
+    },
+    {
+      "name": "Spaghetti Strap Lace Eyelash Teddy Lingerie Sleepwear",
+      "price": "17.99",
+      "vendor": "joyshoetique"
+    }
+  ]
+}

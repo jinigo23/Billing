@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="darkBlue">#2e4053</color>
+    <color name="lightGrey">#AEB6BF</color>
+
+    <color name="mint_green">#98ff98</color>
+    <color name="app_default_color">#2979FF</color>
+    <color name="app_default_color_hollywood_cerise">#EE0290</color>
+    <color name="app_default_color_dodger_blue">#2979FF</color>
+    <color name="app_default_background_color">#FBE2F0</color>
+    <color name="white">#ffffffff</color>
+    <color name="light_grey">#DEDEDE</color>
+
+    <!--    <color name="emerald_green">#50C878</color>-->
+    <color name="default_grey">#DEDEDE</color>
+</resources>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="text_size">14sp</dimen>
+    <dimen name="text_size_18">18sp</dimen>
+    <dimen name="text_size_20">20sp</dimen>
+    <dimen name="product_view_text_size">20sp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="image_size_100">100dp</dimen>
+    <dimen name="image_size_70">70dp</dimen>
+    <dimen name="image_size_50">50dp</dimen>
+    <dimen name="view_product_image_size_150">150dp</dimen>
+    <dimen name="product_padding_left">10dp</dimen>
+    <dimen name="margin_5">5dp</dimen>
+    <dimen name="margin_10">10dp</dimen>
+    <dimen name="margin_20">20dp</dimen>
+    <dimen name="margin_40">40dp</dimen>
+    <dimen name="edittext_padding_10">10dp</dimen>
+
+    <dimen name="cardview_corner_radius">20dp</dimen>
+</resources>
