@@ -15,6 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import com.gia.billing.R;
@@ -22,6 +24,7 @@ import com.gia.billing.adapter.CartAdapter;
 import com.gia.billing.adapter.ProductAdapter;
 import com.gia.billing.helper.AppDataManager;
 import com.gia.billing.helper.DatabaseHelper;
+import com.gia.billing.helper.PreferenceManager;
 import com.gia.billing.model.Bill;
 import com.gia.billing.model.Cart;
 import com.gia.billing.model.Products;
@@ -45,13 +48,15 @@ public class MainFragment extends Fragment {
     private static final int REQUEST_CODE = 10;
     private TextInputEditText enter_customer_name, product_id;
     private ImageView product_quantity_decreament, product_quantity_increament;
-    private TextView txt_product_code, product_quantity, no_of_products, total_price;
+    private TextView txt_product_code, product_quantity, no_of_products, total_price, mrp_price, product_price;
     private Button add_cart_btn, view_cart_btn;
     private ArrayList<Products> productsArrayList;
     private ArrayList<Cart> cartArrayList;
     private TabLayout tabLayout;
     private View contentView;
     private int no_of_items_added = 0;
+    private Toolbar main_toolbar;
+    Products products;
 
     public MainFragment() {
         // Required empty public constructor
@@ -69,11 +74,18 @@ public class MainFragment extends Fragment {
 
             cartArrayList = AppDataManager.getInstance().getCartItems();
 
+            main_toolbar = (Toolbar) contentView.findViewById(R.id.main_toolbar);
+            AppCompatActivity activity = (AppCompatActivity) getActivity();
+            activity.setSupportActionBar(main_toolbar);
+            activity.setTitle("");
+
             product_id = (TextInputEditText) contentView.findViewById(R.id.select_product_id);
             product_quantity_decreament = (ImageView) contentView.findViewById(R.id.product_quantity_decreament);
             product_quantity_increament = (ImageView) contentView.findViewById(R.id.product_quantity_increament);
             txt_product_code = (TextView) contentView.findViewById(R.id.txt_product_code);
             product_quantity = (TextView) contentView.findViewById(R.id.product_quantity);
+            mrp_price = (TextView) contentView.findViewById(R.id.mrp_price);
+            product_price = (TextView) contentView.findViewById(R.id.product_price);
             no_of_products = (TextView) contentView.findViewById(R.id.no_of_products);
             total_price = (TextView) contentView.findViewById(R.id.total_price);
             add_cart_btn = (Button) contentView.findViewById(R.id.add_cart_btn);
@@ -87,7 +99,7 @@ public class MainFragment extends Fragment {
                     if (id_product.length() == 0) {
                         product_id.setError("Select the product");
                     } else {
-                        no_of_items_added++;
+                        no_of_items_added=no_of_items_added+1;
                         Intent intent = new Intent();
                         String product_code = txt_product_code.getText().toString();
                         intent.putExtra("Code", product_code);
@@ -99,7 +111,9 @@ public class MainFragment extends Fragment {
                             Snackbar.make(view, "Product not added", Snackbar.LENGTH_SHORT).setAction("Action", null).show();
                         }
                         product_id.setText("");
-                        product_quantity.setText("1");
+                        product_quantity.setText("0");
+                        product_price.setText("");
+                        mrp_price.setText("");
 
                         float tPrice = 0;
                         for (int i = 0; i < cartArrayList.size(); i++) {
@@ -108,6 +122,49 @@ public class MainFragment extends Fragment {
                         }
                         no_of_products.setText(String.valueOf(no_of_items_added));
                         total_price.setText(String.valueOf(tPrice));
+                    }
+                }
+            });
+
+            product_quantity_increament.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (products==null){
+                            return;
+                        }
+                        String item_quantity = product_quantity.getText().toString();
+                        int plus = Integer.valueOf(item_quantity);
+
+                        if (plus <= 4) {
+                            plus = plus + 1;
+
+                            String mrp_item_price = mrp_price.getText().toString();
+//                            String mrp_item = mrp_item_price.replaceAll("[^0-9]", "");
+                            float item_price = products.getPrice() * plus;
+
+                            product_quantity.setText(String.valueOf(plus));
+                            product_price.setText("₹ " + String.valueOf(item_price));
+                        }
+                     /*else{
+                        Snackbar.make(view, "Limit reached", Snackbar.LENGTH_SHORT).show();
+                    }*/
+                    }
+                });
+
+            product_quantity_decreament.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (products==null){
+                        return;
+                    }
+                    String item_quantity = product_quantity.getText().toString();
+                    int minus = Integer.valueOf(item_quantity);
+
+                    if (minus >= 2) {
+                        minus--;
+                        float item_price = products.getPrice() * minus;
+                        product_quantity.setText(String.valueOf(minus));
+                        product_price.setText("₹ " + String.valueOf(item_price));
                     }
                 }
             });
@@ -121,63 +178,48 @@ public class MainFragment extends Fragment {
                     ListView cart_listview = cartView.findViewById(R.id.cartListView);
                     TextView txt_subtotal = cartView.findViewById(R.id.txt_subtotal);
                     TextView subtotal = cartView.findViewById(R.id.subtotal);
-                    Button save_cart = cartView.findViewById(R.id.save_cart);
                     Button print_cart = cartView.findViewById(R.id.print_cart);
+                    Button cancel_cart = cartView.findViewById(R.id.cancel_cart);
 
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setView(cartView).setTitle("Cart");
+                    String id_product = product_id.getText().toString().trim();
+                    if (cartArrayList.size() != 0) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                        builder.setView(cartView).setTitle("Cart");
 
-                    final AlertDialog alertDialog = builder.create();
-                    alertDialog.show();
+                        final AlertDialog alertDialog = builder.create();
+                        alertDialog.show();
 
-                    CartAdapter adapter = new CartAdapter(getActivity(), cartArrayList);
-                    cart_listview.setAdapter(adapter);
+                        CartAdapter adapter = new CartAdapter(getActivity(), cartArrayList);
+                        cart_listview.setAdapter(adapter);
 
-                    int total_items = cartArrayList.size();
-                    float tPrice = 0;
-                    for (int i = 0; i < cartArrayList.size(); i++) {
-                        Cart cart = cartArrayList.get(i);
-                        tPrice = tPrice + (float) cart.getPrice();
-                    }
-                    txt_subtotal.setText("No. of items : " + String.valueOf(total_items));
-                    subtotal.setText("Total : ₹" + String.valueOf(tPrice));
-
-                    save_cart.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            saveCart();
-                            alertDialog.dismiss();
+                        int total_items = cartArrayList.size();
+                        float tPrice = 0;
+                        for (int i = 0; i < cartArrayList.size(); i++) {
+                            Cart cart = cartArrayList.get(i);
+                            tPrice = tPrice + (float) cart.getPrice();
                         }
-                    });
-                    no_of_products.setText("");
-                    total_price.setText("");
-                }
-            });
+                        txt_subtotal.setText("No. of items : " + String.valueOf(total_items));
+                        subtotal.setText("Total : ₹" + String.valueOf(tPrice));
 
-            product_quantity_increament.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    String item_quantity = product_quantity.getText().toString();
-                    int plus = Integer.valueOf(item_quantity);
+                        print_cart.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                printCart();
+                                no_of_products.setText("");
+                                total_price.setText("");
+                                alertDialog.dismiss();
+                            }
+                        });
 
-                    if (plus <= 4) {
-                        plus++;
-                        product_quantity.setText(String.valueOf(plus));
+                        cancel_cart.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                alertDialog.dismiss();
+                            }
+                        });
+
                     } else {
-                        Snackbar.make(view, "Limit reached", Snackbar.LENGTH_SHORT).show();
-                    }
-                }
-            });
-
-            product_quantity_decreament.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    String item_quantity = product_quantity.getText().toString();
-                    int minus = Integer.valueOf(item_quantity);
-
-                    if (minus >= 2) {
-                        minus--;
-                        product_quantity.setText(String.valueOf(minus));
+                        PreferenceManager.getInstance().toastData("Cart is empty");
                     }
                 }
             });
@@ -206,20 +248,24 @@ public class MainFragment extends Fragment {
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                             String clicked_item = productItems_list.getItemAtPosition(position).toString();
-                            Products products = productAdapter.getItem(position);
+                            products = productAdapter.getItem(position);
                             product_id.setText(products.getName());
                             txt_product_code.setText(products.getCode());
+                            String mrp = String.valueOf(products.getPrice());
+                            product_quantity.setText("1");
+                            mrp_price.setText("₹ "+mrp);
+                            product_price.setText("₹ " + mrp);
                             alertDialog.dismiss();
                         }
                     });
-
+//"₹ " +
                 }
             });
         }
         return contentView;
     }
 
-    private void saveCart() {
+    private void printCart() {
         String timeStamp = String.valueOf(TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis()));
         int tStamp = Integer.parseInt(timeStamp);
 
@@ -252,9 +298,9 @@ public class MainFragment extends Fragment {
             int quantity = cart.getQuantity();
             String quantityType = products.getQuantityType();
             float price = cart.getPrice();
+            int noof_quantity = Integer.valueOf(product_quantity.getText().toString());
 
-
-            boolean isInserted = DatabaseHelper.getInstance(getActivity()).insertProducts(billID, name, quantity, quantityType, price);
+            boolean isInserted = DatabaseHelper.getInstance(getActivity()).insertProducts(billID, name, quantity, noof_quantity, quantityType, price);
             if (isInserted == true) {
                 Log.d("Inserting Data into DB", "Code : " + name + " Quantity :: " + quantity + quantityType + " Price :: " + price);
             }

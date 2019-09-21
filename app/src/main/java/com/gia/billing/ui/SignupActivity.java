@@ -12,6 +12,8 @@ import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 
 import com.gia.billing.R;
+import com.gia.billing.helper.PreferenceManager;
+import com.gia.billing.root.MyApplication;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -29,7 +31,7 @@ public class SignupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-        sharedPreferences = getSharedPreferences(USER_SIGNUP, Context.MODE_PRIVATE);
+//        sharedPreferences = getSharedPreferences(USER_SIGNUP, Context.MODE_PRIVATE);
 
         signup_user_name_text_layout = (TextInputLayout) findViewById(R.id.signup_user_name_text_layout);
         signup_phone_text_layout = (TextInputLayout) findViewById(R.id.signup_phone_text_layout);
@@ -46,11 +48,14 @@ public class SignupActivity extends AppCompatActivity {
                 String password = signup_password.getText().toString().trim();
                 if (user_name.length() >= 3 && phone.length() == 10 && password.length() >= 6) {
                     Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    PreferenceManager.getInstance().addPreference("User_Name", user_name);
+                    PreferenceManager.getInstance().addPreference("Phone_Number", phone);
+                    PreferenceManager.getInstance().addPreference("User_Password", password);
+                    /*SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString("User_Name", user_name);
                     editor.putString("Phone_Number", phone);
                     editor.putString("User_Password", password);
-                    editor.commit();
+                    editor.commit();*/
                     Snackbar.make(view, R.string.signup_created, Snackbar.LENGTH_SHORT).show();
                     startActivity(intent);
                     finish();

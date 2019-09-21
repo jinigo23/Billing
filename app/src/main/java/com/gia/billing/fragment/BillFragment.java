@@ -5,11 +5,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.PopupMenu;
+import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import com.gia.billing.InvoiceReport;
@@ -26,6 +32,7 @@ import java.util.ArrayList;
  */
 public class BillFragment extends Fragment {
 
+    private Toolbar bill_toolbar;
     private ListView billNumber;
     private ArrayList<Bill> billList;
 
@@ -41,6 +48,11 @@ public class BillFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_bill, container, false);
 
+        bill_toolbar = view.findViewById(R.id.bill_toolbar);
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
+        activity.setSupportActionBar(bill_toolbar);
+        activity.setTitle("Invoice");
+
         billNumber = view.findViewById(R.id.invoiceItemsList);
         billList = DatabaseHelper.getInstance(getActivity()).getBillList();
 
@@ -53,6 +65,7 @@ public class BillFragment extends Fragment {
                 Bill bill = adapter.getItem(position);
                 Intent intent = new Intent(getActivity(), InvoiceReport.class);
                 intent.putExtra("Bill_Number", bill.getInvoice_id());
+                intent.putExtra("Bill_Price", bill.getTotal_price());
                 startActivity(intent);
             }
         });
@@ -62,4 +75,9 @@ public class BillFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+    }
 }

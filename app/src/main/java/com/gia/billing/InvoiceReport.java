@@ -1,7 +1,12 @@
 package com.gia.billing;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +25,9 @@ public class InvoiceReport extends AppCompatActivity {
 
     private TextView name, quantity, price;
     private RecyclerView billList;
+    private TextView bill_print_price;
+    private Button bill_print_button;
+
     DatabaseHelper helper;
 
     @Override
@@ -28,6 +36,9 @@ public class InvoiceReport extends AppCompatActivity {
         setContentView(R.layout.activity_invoice_report);
 
         billList = (RecyclerView) findViewById(R.id.product_list_item);
+        bill_print_button = findViewById(R.id.bill_print_button);
+        bill_print_price = findViewById(R.id.bill_print_price);
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         billList.setLayoutManager(layoutManager);
 
@@ -43,5 +54,31 @@ public class InvoiceReport extends AppCompatActivity {
         Log.d("Cart Total price :: ", String.valueOf(cart.getTotal_price()));
         Log.d("Total price :: ", String.valueOf(bill.getTotal_price()));
         Log.d("BillList", "Bill Array List :: " + list);
+
+        float invoice_price=0;
+
+        for (int i = 0; i < list.size(); i++) {
+            Invoice invoice = list.get(i);
+            invoice_price = invoice_price + (float) invoice.getPrice();
+        }
+        Log.d("Invoice Total price :: ", "invoice : " + invoice_price);
+
+//₹
+        bill_print_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PopupMenu popupMenu = new PopupMenu(InvoiceReport.this, view);
+                popupMenu.getMenuInflater().inflate(R.menu.print_popup, popupMenu.getMenu());
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem) {
+                        return true;
+                    }
+                });
+                popupMenu.show();
+            }
+        });
+
+        bill_print_price.setText("Total price : ₹ "+invoice_price);
     }
 }

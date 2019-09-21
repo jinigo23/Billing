@@ -6,6 +6,7 @@ public class Invoice {
     private int product_invoice_no;
     private String name;
     private int quantity;
+    private int noOfQuantity;
     private String quantityType;
     private float price;
 
@@ -39,6 +40,14 @@ public class Invoice {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public int getNoOfQuantity() {
+        return noOfQuantity;
+    }
+
+    public void setNoOfQuantity(int noOfQuantity) {
+        this.noOfQuantity = noOfQuantity;
     }
 
     public String getQuantityType() {

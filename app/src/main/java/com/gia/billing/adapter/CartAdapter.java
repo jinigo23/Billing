@@ -59,8 +59,9 @@ public class CartAdapter extends ArrayAdapter<Cart> {
         for (int i = 0; i < cartList.size(); i++) {
             holder.cart_product_image.setImageResource(currentCart.getProduct_Image());
             holder.name.setText(currentCart.getName());
-            int itQuantity = currentCart.getQuantity()*currentCart.getNoOfQuantity();
-            holder.quantity.setText(Integer.toString(itQuantity) + currentCart.getQuantityType());
+            int itQuantity = currentCart.getQuantity();
+            int noOfQuantity = currentCart.getNoOfQuantity();
+            holder.quantity.setText(Integer.toString(itQuantity) + currentCart.getQuantityType()+" * "+Integer.valueOf(noOfQuantity));
             float itPrice = currentCart.getPrice();
             String proPrice = String.format("%.02f", itPrice);
             holder.price.setText("₹" + proPrice);

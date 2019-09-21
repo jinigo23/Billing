@@ -21,6 +21,7 @@ import com.gia.billing.fragment.CartFragment;
 import com.gia.billing.fragment.DashboardFragment;
 import com.gia.billing.fragment.MainFragment;
 import com.gia.billing.helper.DatabaseHelper;
+import com.gia.billing.helper.PreferenceManager;
 import com.gia.billing.model.Products;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.textfield.TextInputEditText;
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager tab_viewpager;
     private boolean doubleBackPressed;
+    ViewPagerAdapter pagerAdapter;
 
 
     public MainActivity() {
@@ -52,15 +54,22 @@ public class MainActivity extends AppCompatActivity {
         DatabaseHelper.getInstance(this);
         Log.d("Create Table : ", "Table created : " + DatabaseHelper.getInstance(this));
 
-
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
         tab_viewpager = (ViewPager) findViewById(R.id.tab_viewpager);
 
-        ViewPagerAdapter pagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-        pagerAdapter.pageFragment(new DashboardFragment(), "Dashboard");
-        pagerAdapter.pageFragment(new MainFragment(), "Products");
-        pagerAdapter.pageFragment(new BillFragment(), "Invoice");
-        pagerAdapter.pageFragment(new AccountFragment(), "Account");
+        boolean admin = PreferenceManager.getInstance().getBoolean("Admin");
+
+        pagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+        if (admin == true) {
+//            pagerAdapter.pageFragment(new DashboardFragment(), "Dashboard");
+            pagerAdapter.pageFragment(new MainFragment(), "Products");
+            pagerAdapter.pageFragment(new BillFragment(), "Invoice");
+            pagerAdapter.pageFragment(new AccountFragment(), "Account");
+        } else {
+            pagerAdapter.pageFragment(new MainFragment(), "Products");
+            pagerAdapter.pageFragment(new BillFragment(), "Invoice");
+            pagerAdapter.pageFragment(new AccountFragment(), "Account");
+        }
         tab_viewpager.setAdapter(pagerAdapter);
         tabLayout.setupWithViewPager(tab_viewpager);
 
@@ -68,9 +77,14 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (doubleBackPressed) {
-            super.onBackPressed();
-            return;
+        int current_position = tab_viewpager.getCurrentItem();
+        if (current_position == 0) {
+            if (doubleBackPressed) {
+                super.onBackPressed();
+                return;
+            }
+        } else {
+            tab_viewpager.setCurrentItem(0);
         }
         this.doubleBackPressed = true;
         new Handler().postDelayed(new Runnable() {
@@ -81,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
         }, 2000);
     }
 
-    @Override
+    /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
@@ -90,26 +104,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-        /*if (id == R.id.report) {
-
-        }*/
-        return super.onOptionsItemSelected(item);
-    }
-
-    /*@Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-//        if (id == R.id.report) {
-//            Intent intent = new Intent(MainActivity.this, BillNumber.class);
-//            startActivity(intent);
-//            return true;
-//        }
+        if (id == R.id.filter) {
+//            
+        }
         return super.onOptionsItemSelected(item);
     }*/
 }

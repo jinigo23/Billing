@@ -49,7 +49,8 @@ public class InvoiceAdapter extends ArrayAdapter<Invoice> {
         for (int i = 0; i < invoiceList.size(); i++) {
             String invoice_no = String.valueOf(invoice.getProduct_invoice_no());
             holder.name.setText(invoice.getName());
-            holder.quantity.setText(invoice.getQuantity() + invoice.getQuantityType());
+            int noof_quantity = invoice.getNoOfQuantity();
+            holder.quantity.setText(invoice.getQuantity() + invoice.getQuantityType()+" * "+String.valueOf(noof_quantity));
             String invoicePrice = String.format("%.02f", Float.valueOf(invoice.getPrice()));
             holder.price.setText("₹." + invoicePrice);
         }

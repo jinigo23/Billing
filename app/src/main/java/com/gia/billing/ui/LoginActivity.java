@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.gia.billing.R;
 import com.gia.billing.helper.AppDataManager;
 import com.gia.billing.helper.PreferenceManager;
+import com.gia.billing.root.MyApplication;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -37,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        loginSharedPreferences = getSharedPreferences(USER_LOGIN, MODE_PRIVATE);
+        loginSharedPreferences = MyApplication.getApplication().getSharedPreferences("User_details", MODE_PRIVATE);
         sharedPreferences = getSharedPreferences("User_signup", MODE_PRIVATE);
 
         login_welcome_text = (TextView) findViewById(R.id.login_welcome_text);
@@ -55,8 +56,9 @@ public class LoginActivity extends AppCompatActivity {
         login_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String phone = sharedPreferences.getString("Phone_Number", null);
-                String password = sharedPreferences.getString("User_Password", null);
+//                String phone = sharedPreferences.getString("Phone_Number", null);
+                String phone = PreferenceManager.getInstance().getString("Phone_Number");
+                String password = PreferenceManager.getInstance().getString("User_Password");
 
                 String user_phone = login_phone.getText().toString().trim();
                 String user_password = login_password.getText().toString().trim();
@@ -66,8 +68,8 @@ public class LoginActivity extends AppCompatActivity {
                     editor.putBoolean("Admin", admin_checkBox.isChecked());
                     editor.commit();*/
                     boolean isAdmin = admin_checkBox.isChecked();
-                    PreferenceManager.getInstance().addPreferences("Admin", isAdmin);
-                    PreferenceManager.getInstance().addPreferences("Logged_in", user_password);
+                    PreferenceManager.getInstance().addPreference("Admin", isAdmin);
+                    PreferenceManager.getInstance().addPreference("Logged_in", user_password);
 
                     intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);

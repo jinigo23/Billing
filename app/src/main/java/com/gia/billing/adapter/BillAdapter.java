@@ -44,7 +44,7 @@ public class BillAdapter extends ArrayAdapter<Bill> {
             holder = (ViewHolder) billItem.getTag();
         }
         for (int i = 0; i < billList.size(); i++) {
-            holder.bill_id.setText("Invoice No. "+String.valueOf(bill.getInvoice_id()));
+            holder.bill_id.setText(String.valueOf(bill.getInvoice_id()));
             String itPrice = String.format("%.02f", bill.getTotal_price());
             holder.bill_total_price.setText("₹ " + itPrice);
             holder.bill_date.setText(bill.getInvoice_date());

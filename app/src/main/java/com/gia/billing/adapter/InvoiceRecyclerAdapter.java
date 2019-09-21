@@ -1,6 +1,8 @@
 package com.gia.billing.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +39,7 @@ public class InvoiceRecyclerAdapter extends RecyclerView.Adapter<InvoiceRecycler
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
         Invoice invoice = invoiceArrayList.get(position);
+        float invoice_total = 0;
         for (int i = 0; i < invoiceArrayList.size(); i++) {
             viewHolder.name.setText(invoice.getName());
             viewHolder.quantity.setText(invoice.getQuantity() + invoice.getQuantityType());

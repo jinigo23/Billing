@@ -2,87 +2,139 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_margin="@dimen/margin_20"
-    android:layout_gravity="center"
-    android:padding="@dimen/margin_20"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     tools:context=".fragment.MainFragment">
 
-    <Button
-        android:id="@+id/add_cart_btn"
-        android:layout_width="wrap_content"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/main_toolbar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_40"
-        android:layout_marginRight="@dimen/margin_20"
-        android:background="@drawable/button_default"
-        android:ems="8"
-        android:text="Add cart"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toStartOf="@+id/view_cart_btn"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_quantity_of_the_product" />
+        android:layout_alignParentTop="true"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <Button
-        android:id="@+id/view_cart_btn"
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/main_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add products"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_18"
+                android:layout_marginRight="@dimen/margin_20"
+                android:src="@drawable/action_bar_notifications_none" />
+
+            <!--<ImageView
+                android:id="@+id/filter_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="@dimen/margin_20"
+                android:src="@drawable/action_bar_notifications_none" />-->
+
+        </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/button_default"
-        android:ems="8"
-        android:text="View cart"
-        android:textColor="@color/white"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/margin_20"
+        android:padding="@dimen/margin_20"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/add_cart_btn"
-        app:layout_constraintTop_toTopOf="@+id/add_cart_btn" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_toolbar">
 
-    <LinearLayout
-        android:id="@+id/add_product_quantity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="@id/select_product_id"
-        app:layout_constraintTop_toTopOf="@+id/txt_quantity_of_the_product">
-
-        <ImageView
-            android:id="@+id/product_quantity_decreament"
+        <Button
+            android:id="@+id/add_cart_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/remove_circle_24dp" />
+            android:layout_marginTop="@dimen/margin_40"
+            android:layout_marginRight="@dimen/margin_20"
+            android:background="@drawable/button_default"
+            android:ems="8"
+            android:text="Add to cart"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toStartOf="@+id/view_cart_btn"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_mrp_price" />
+
+        <Button
+            android:id="@+id/view_cart_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_default"
+            android:ems="8"
+            android:text="View cart"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/add_cart_btn"
+            app:layout_constraintTop_toTopOf="@+id/add_cart_btn" />
+
+        <LinearLayout
+            android:id="@+id/add_product_quantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="@id/select_product_id"
+            app:layout_constraintTop_toTopOf="@+id/txt_quantity_of_the_product">
+
+            <ImageView
+                android:id="@+id/product_quantity_decreament"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/remove_circle_24dp" />
+
+            <TextView
+                android:id="@+id/product_quantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/margin_10"
+                android:text="0"
+                android:textColor="@color/app_default_color"
+                android:textSize="@dimen/text_size" />
+
+            <ImageView
+                android:id="@+id/product_quantity_increament"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/margin_10"
+                android:src="@drawable/add_circle_24dp" />
+
+            <TextView
+                android:id="@+id/product_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/margin_40"
+                android:textColor="@color/app_default_color"
+                android:textSize="@dimen/text_size" />
+
+        </LinearLayout>
 
         <TextView
-            android:id="@+id/product_quantity"
+            android:id="@+id/txt_product_code"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/margin_10"
-            android:text="1"
-            android:textColor="@color/app_default_color"
-            android:textSize="@dimen/text_size_18" />
+            android:layout_marginStart="40dp"
+            android:textColor="@color/white"
+            app:layout_constraintBaseline_toBaselineOf="@+id/select_product_id"
+            app:layout_constraintBottom_toBottomOf="@+id/select_product_id"
+            app:layout_constraintStart_toStartOf="parent" />
 
-        <ImageView
-            android:id="@+id/product_quantity_increament"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/margin_10"
-            android:src="@drawable/add_circle_24dp" />
-
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/txt_product_code"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:textColor="@color/white"
-        app:layout_constraintBaseline_toBaselineOf="@+id/select_product_id"
-        app:layout_constraintBottom_toBottomOf="@+id/select_product_id"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <!--<TextView
+        <!--<TextView
         android:id="@+id/txt_customer_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -93,83 +145,104 @@
         app:layout_constraintBottom_toBottomOf="@+id/enter_customer_name"
         app:layout_constraintStart_toStartOf="parent" />-->
 
-    <TextView
-        android:id="@+id/txt_product_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Product name :"
-        android:textColor="@color/app_default_color"
-        android:textSize="14dp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/select_product_id"
-        app:layout_constraintBottom_toBottomOf="@+id/select_product_id"
-        app:layout_constraintStart_toStartOf="parent" />
+        <TextView
+            android:id="@+id/txt_product_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Product name :"
+            android:textColor="@color/app_default_color"
+            android:textSize="14dp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/select_product_id"
+            app:layout_constraintBottom_toBottomOf="@+id/select_product_id"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/txt_quantity_of_the_product"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:text="Product quantity :"
-        android:textColor="@color/app_default_color"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txt_product_id" />
+        <TextView
+            android:id="@+id/txt_quantity_of_the_product"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="Product quantity :"
+            android:textColor="@color/app_default_color"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_product_id" />
 
-    <TextView
-        android:id="@+id/txt_no_of_products"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_40"
-        android:text="No. of products :"
-        android:textColor="@color/app_default_color"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/add_cart_btn" />
+        <TextView
+            android:id="@+id/txt_mrp_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="MRP price :"
+            android:textColor="@color/app_default_color"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_quantity_of_the_product" />
 
-    <TextView
-        android:id="@+id/no_of_products"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/app_default_color"
-        android:textStyle="bold"
-        app:layout_constraintBaseline_toBaselineOf="@+id/txt_no_of_products"
-        app:layout_constraintStart_toStartOf="@id/select_product_id" />
+        <TextView
+            android:id="@+id/mrp_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/app_default_color"
+            app:layout_constraintBottom_toBottomOf="@+id/txt_mrp_price"
+            app:layout_constraintStart_toStartOf="@+id/select_product_id" />
 
-    <TextView
-        android:id="@+id/txt_total_price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_10"
-        android:text="Total price : "
-        android:textColor="@color/app_default_color"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txt_no_of_products" />
+        <TextView
+            android:id="@+id/txt_no_of_products"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_40"
+            android:text="No. of products :"
+            android:textColor="@color/app_default_color"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/add_cart_btn" />
 
-    <TextView
-        android:id="@+id/total_price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="3dp"
-        android:text="₹ "
-        android:textColor="@color/app_default_color"
-        android:textStyle="bold"
-        app:layout_constraintBaseline_toBaselineOf="@+id/txt_total_price"
-        app:layout_constraintLeft_toRightOf="@id/txt_total_price" />
+        <TextView
+            android:id="@+id/no_of_products"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="@dimen/text_size"
+            android:textColor="@color/app_default_color"
+            android:textStyle="bold"
+            app:layout_constraintBaseline_toBaselineOf="@+id/txt_no_of_products"
+            app:layout_constraintStart_toStartOf="@id/select_product_id" />
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/select_product_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@id/txt_product_id"
-        android:layout_marginStart="120dp"
-        android:background="@drawable/buy_button"
-        android:ems="10"
-        android:hint="Select products"
-        android:inputType="textCapWords"
-        android:padding="@dimen/margin_5"
-        android:textColor="@color/app_default_color"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/txt_total_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_10"
+            android:text="Total price : "
+            android:textColor="@color/app_default_color"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_no_of_products" />
 
-    <!--<com.google.android.material.textfield.TextInputEditText
+        <TextView
+            android:id="@+id/total_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:text="₹ "
+            android:textSize="@dimen/text_size"
+            android:textColor="@color/app_default_color"
+            android:textStyle="bold"
+            app:layout_constraintBaseline_toBaselineOf="@+id/txt_total_price"
+            app:layout_constraintLeft_toRightOf="@id/txt_total_price" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/select_product_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/txt_product_id"
+            android:layout_marginStart="120dp"
+            android:background="@drawable/buy_button"
+            android:ems="10"
+            android:hint="Select products"
+            android:inputType="textCapWords"
+            android:padding="@dimen/margin_5"
+            android:textColor="@color/app_default_color"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!--<com.google.android.material.textfield.TextInputEditText
         android:id="@+id/enter_customer_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -184,5 +257,6 @@
         android:textColor="@color/app_default_color"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />-->
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

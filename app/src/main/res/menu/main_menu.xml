@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/search"
-        android:icon="@drawable/action_bar_search"
+        android:id="@+id/filter"
+        android:icon="@drawable/filter_list"
         android:title="Search"
         app:showAsAction="always" />
 

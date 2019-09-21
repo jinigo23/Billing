@@ -96,10 +96,10 @@ public class CartFragment extends Fragment {
                         float price = cart.getPrice();
 
 
-                        boolean isInserted = DatabaseHelper.getInstance(getActivity()).insertProducts(billID, name, quantity, quantityType, price);
+                        /*boolean isInserted = DatabaseHelper.getInstance(getActivity()).insertProducts(billID, name, quantity, quantityType, price);
                         if (isInserted == true) {
                             Log.d("Inserting Data into DB", "Code : " + name + " Quantity :: " + quantity + quantityType + " Price :: " + price);
-                        }
+                        }*/
                     }
                     Toast.makeText(getActivity(), "Item Saved", Toast.LENGTH_SHORT).show();
                     Log.d("Date", "Date :: " + timeStamp + " Price :: " + totalPrice);

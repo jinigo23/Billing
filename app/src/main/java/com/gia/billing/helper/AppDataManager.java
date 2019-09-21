@@ -19,7 +19,6 @@ import java.util.Map;
 public class AppDataManager {
     private static final AppDataManager ourInstance = new AppDataManager();
     private Context context;
-    private SharedPreferences login_sharedPreferences;
 
     public static AppDataManager getInstance() {
         return ourInstance;
@@ -111,7 +110,7 @@ public class AppDataManager {
 
 //            Quantity * no of items
             k.setNoOfQuantity(noOfQuantity);
-            int total_Quantity = pro.getQuantity() * noOfQuantity;
+            int total_Quantity = pro.getQuantity();
             k.setQuantity(total_Quantity);
             k.setQuantityType(pro.getQuantityType());
             k.setProducts(getProduct(itemCode));
@@ -134,32 +133,6 @@ public class AppDataManager {
 
     public ArrayList<Invoice> getBillItem() {
         return billItem;
-    }
-
-    public synchronized void addPreference(String key, String value) {
-        if (key != null && value != null) {
-            login_sharedPreferences = MyApplication.getApplication().getSharedPreferences("User_signup", Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = login_sharedPreferences.edit();
-            editor.putString(key, value);
-            editor.apply();
-        } else {
-            toastData("Unable to add string value");
-        }
-    }
-
-    public synchronized void addPreference(String key, Boolean value) {
-        if (key != null && value != null) {
-            login_sharedPreferences = context.getSharedPreferences("User_signup", Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = login_sharedPreferences.edit();
-            editor.putBoolean(key, value);
-            editor.apply();
-        } else {
-            toastData("Unable to add boolean value");
-        }
-    }
-
-    public void toastData(String data) {
-        Toast.makeText(context, data, Toast.LENGTH_SHORT).show();
     }
 
 }

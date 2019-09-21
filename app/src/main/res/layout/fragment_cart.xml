@@ -40,24 +40,24 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <Button
-                android:id="@+id/save_cart"
+                android:id="@+id/print_cart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/margin_20"
                 android:layout_weight="1"
                 android:background="@drawable/buy_button"
                 android:textAllCaps="false"
-                android:text="Save Cart"
+                android:text="Print Cart"
                 android:textColor="@color/app_default_color" />
 
             <Button
-                android:id="@+id/print_cart"
+                android:id="@+id/cancel_cart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/buy_button"
                 android:textAllCaps="false"
-                android:text="Print Invoice"
+                android:text="Cancel"
                 android:textColor="@color/app_default_color" />
         </LinearLayout>
 

@@ -25,6 +25,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String PRODUCT_BILL_NUMBER = "BILL_NO";
     private static final String PRODUCT_NAME = "NAME";
     private static final String PRODUCT_QUANTITY = "QUANTITY";
+    private static final String PRODUCT_NO_OF_QUANTITY = "NO_OF_QUANTITY";
     private static final String PRODUCT_QUANTITY_TYPE = "QUANTITY_TYPE";
     private static final String PRODUCT_PRICE = "PRICE";
 
@@ -35,7 +36,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String INVOICE_DATE = "DATE";
 
     private static final String CREATE_INVOICE_TABLE = "CREATE TABLE IF NOT EXISTS " + INVOICE_TABLE_NAME + "(" + INVOICE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + INVOICE_PRICE + " REAL, " + INVOICE_DATE + " TEXT)";
-    private static final String CREATE_PRODUCT_TABLE = "CREATE TABLE IF NOT EXISTS " + PRODUCT_TABLE_NAME + "(" + PRODUCT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + PRODUCT_BILL_NUMBER + " REAL, " + PRODUCT_NAME + " TEXT, " + PRODUCT_QUANTITY + " INTEGER, " + PRODUCT_QUANTITY_TYPE + " TEXT, " + PRODUCT_PRICE + " REAL)";
+    private static final String CREATE_PRODUCT_TABLE = "CREATE TABLE IF NOT EXISTS " + PRODUCT_TABLE_NAME + "(" + PRODUCT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + PRODUCT_BILL_NUMBER + " REAL, " + PRODUCT_NAME + " TEXT, " + PRODUCT_QUANTITY + " INTEGER, " + PRODUCT_QUANTITY_TYPE + " TEXT, " + PRODUCT_NO_OF_QUANTITY + " INTEGER, " + PRODUCT_PRICE + " REAL)";
 
     private DatabaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -74,12 +75,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return id;
     }
 
-    public boolean insertProducts(long bill_no, String name, int quantity, String quantityType, float price) {
+    public boolean insertProducts(long bill_no, String name, int quantity, int noofquantity, String quantityType, float price) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(PRODUCT_BILL_NUMBER, bill_no);
         contentValues.put(PRODUCT_NAME, name);
         contentValues.put(PRODUCT_QUANTITY, quantity);
+        contentValues.put(PRODUCT_NO_OF_QUANTITY, noofquantity);
         contentValues.put(PRODUCT_QUANTITY_TYPE, quantityType);
         contentValues.put(PRODUCT_PRICE, price);
         long id = db.insert(PRODUCT_TABLE_NAME, null, contentValues);

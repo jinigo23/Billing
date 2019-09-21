@@ -16,8 +16,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import com.gia.billing.R;
+import com.gia.billing.helper.PreferenceManager;
 import com.gia.billing.ui.LoginActivity;
-import com.gia.billing.ui.SignupActivity;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -53,10 +53,18 @@ public class AccountFragment extends Fragment {
             button_account_change_password = (Button) contentView.findViewById(R.id.button_account_change_password);
             button_account_logout = (Button) contentView.findViewById(R.id.button_account_logout);
 
-            String account_name = sharedPreferences.getString("User_Name", null);
+            /*String account_name = sharedPreferences.getString("User_Name", null);
             String account_phone = sharedPreferences.getString("Phone_Number", null);
-            String admin = loginSharedPreferences.getString("Admin", null);
-            account_user_name.setText(account_name + " (" + admin + ")");
+            String admin = loginSharedPreferences.getString("Admin", null);*/
+
+            String account_name=PreferenceManager.getInstance().getString("User_Name");
+            String account_phone=PreferenceManager.getInstance().getString("Phone_Number");
+            boolean admin = PreferenceManager.getInstance().getBoolean("Admin");
+            if (admin==true) {
+                account_user_name.setText(account_name + " (" + "Admin" + ")");
+            } else {
+                account_user_name.setText(account_name);
+            }
             account_phone_number.setText(account_phone);
 
             button_account_change_password.setOnClickListener(new View.OnClickListener() {
@@ -83,9 +91,7 @@ public class AccountFragment extends Fragment {
                             String new_password = change_new_password.getText().toString().trim();
                             String confirm_password = change_confirm_password.getText().toString().trim();
                             if (new_password.equals(confirm_password)) {
-                                SharedPreferences.Editor editor = sharedPreferences.edit();
-                                editor.putString("User_Password", confirm_password);
-                                editor.apply();
+                                PreferenceManager.getInstance().addPreference("User_Password", new_password);
                             } else {
                                 Snackbar.make(view, "Password not matching", Snackbar.LENGTH_SHORT).show();
                             }
@@ -103,12 +109,7 @@ public class AccountFragment extends Fragment {
                     builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                            /*SharedPreferences.Editor editor = sharedPreferences.edit();
-                            editor.clear();
-                            editor.commit();*/
-                            SharedPreferences.Editor login_editor = loginSharedPreferences.edit();
-                            login_editor.clear();
-                            login_editor.commit();
+                            PreferenceManager.getInstance().removePreference("Logged_in");
                             Intent intent = new Intent(getActivity(), LoginActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);

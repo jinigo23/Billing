@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:padding="@dimen/margin_20"
+    android:layout_margin="@dimen/margin_20"
+    android:orientation="vertical"
+    tools:context=".AddStaffActivity">
+
+    <TextView
+        android:id="@+id/txt_add_staff_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cashier name"
+        android:textColor="@color/app_default_color"
+        android:textSize="@dimen/text_size" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/add_staff_name_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_10">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/add_staff_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/buy_button"
+            android:ems="15"
+            android:hint="Enter staff name"
+            android:inputType="textPersonName"
+            android:maxLines="1" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/txt_add_staff_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_10"
+        android:text="Cashier username"
+        android:textColor="@color/app_default_color"
+        android:textSize="@dimen/text_size" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/add_staff_username_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_10">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/add_staff_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_20"
+            android:background="@drawable/buy_button"
+            android:ems="15"
+            android:hint="Enter staff phone"
+            android:inputType="phone"
+            android:maxLength="10"
+            android:maxLines="1" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/txt_add_staff_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_10"
+        android:text="Cashier password"
+        android:textColor="@color/app_default_color"
+        android:textSize="@dimen/text_size" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/add_staff_password_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_10">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/add_staff_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_20"
+            android:background="@drawable/buy_button"
+            android:ems="15"
+            android:hint="Enter staff password"
+            android:inputType="phone"
+            android:maxLength="15"
+            android:maxLines="1" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/create_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_40"
+        android:background="@drawable/button_default"
+        android:ems="10"
+        android:layout_gravity="center_horizontal"
+        android:text="Create"
+        android:textColor="@color/white" />
+
+</LinearLayout>
