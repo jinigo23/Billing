@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/margin_20"
+    android:layout_gravity="center"
+    tools:context=".AddProductsActivity">
+
+    <TextView
+        android:id="@+id/txt_product_code_admin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:text="Product Name"
+        android:textSize="@dimen/text_size"
+        android:textColor="?attr/colorPrimary"/>
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/product_code_admin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="15"
+        android:inputType="textCapCharacters"
+        android:padding="@dimen/margin_10"
+        android:maxLines="1"
+        android:maxLength="50"
+        android:imeOptions="actionNext"
+        android:layout_below="@id/txt_product_code_admin"
+        android:background="@drawable/buy_button"
+        android:textColor="@android:color/black"
+        android:hint="Enter the product code" />
+
+    <TextView
+        android:id="@+id/txt_product_name_admin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/product_code_admin"
+        android:text="Product Name"
+        android:layout_marginTop="@dimen/margin_10"
+        android:textSize="@dimen/text_size"
+        android:textColor="?attr/colorPrimary"/>
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/product_name_admin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="15"
+            android:inputType="textCapWords"
+            android:padding="@dimen/margin_10"
+            android:maxLines="1"
+            android:maxLength="50"
+            android:imeOptions="actionNext"
+            android:layout_below="@id/txt_product_name_admin"
+            android:background="@drawable/buy_button"
+
+            android:hint="Enter the product name" />
+
+    <TextView
+        android:id="@+id/txt_product_category_admin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/product_name_admin"
+        android:text="Category"
+        android:layout_marginTop="@dimen/margin_10"
+        android:textSize="@dimen/text_size"
+        android:textColor="?attr/colorPrimary"/>
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/product_category_admin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="15"
+        android:inputType="textCapWords"
+        android:padding="@dimen/margin_10"
+        android:maxLines="1"
+        android:maxLength="50"
+        android:imeOptions="actionNext"
+        android:layout_below="@id/txt_product_category_admin"
+        android:background="@drawable/buy_button"
+        android:textColor="@android:color/black"
+        android:hint="Select the product category" />
+
+    <TextView
+        android:id="@+id/txt_product_sub_category_admin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/product_category_admin"
+        android:text="Subcateogry"
+        android:layout_marginTop="@dimen/margin_10"
+        android:textSize="@dimen/text_size"
+        android:textColor="?attr/colorPrimary"/>
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/product_sub_category_admin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="15"
+        android:inputType="textCapWords"
+        android:padding="@dimen/margin_10"
+        android:maxLines="1"
+        android:maxLength="50"
+        android:imeOptions="actionNext"
+        android:background="@drawable/buy_button"
+        android:hint="Select the product subcategory"
+        android:layout_below="@id/txt_product_sub_category_admin"/>
+
+    <TextView
+        android:id="@+id/txt_quantity_admin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/product_sub_category_admin"
+        android:layout_marginTop="@dimen/margin_10"
+        android:text="Quantity"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="@dimen/text_size"/>
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/quantity_admin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/buy_button"
+        android:padding="@dimen/margin_10"
+        android:hint="Enter the quantity"
+        android:inputType="number"
+        android:ems="10"
+        android:imeOptions="actionNext"
+        android:layout_below="@id/txt_quantity_admin"
+        android:maxLength="6"
+        android:maxLines="1"/>
+
+    <Spinner
+        android:id="@+id/quantity_type_admin_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_20"
+        android:padding="@dimen/margin_10"
+        android:layout_alignBottom="@id/quantity_admin"
+        android:layout_toRightOf="@id/quantity_admin" />
+
+    <TextView
+        android:id="@+id/txt_product_price_admin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_10"
+        android:layout_below="@id/quantity_admin"
+        android:text="Price"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="@dimen/text_size"/>
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/product_price_admin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/buy_button"
+        android:padding="@dimen/margin_10"
+        android:hint="Enter the product price"
+        android:inputType="number"
+        android:maxLength="6"
+        android:imeOptions="actionDone"
+        android:layout_below="@id/txt_product_price_admin"
+        android:ems="15"/>
+
+    <Button
+        android:id="@+id/add_product_button_admin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_default"
+        android:layout_centerInParent="true"
+        android:text="Add product"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size"
+        android:ems="10"
+        android:padding="@dimen/margin_10"
+        android:layout_marginTop="@dimen/margin_20"
+        android:layout_below="@id/product_price_admin"/>
+
+</RelativeLayout>

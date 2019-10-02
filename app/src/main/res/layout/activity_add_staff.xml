@@ -14,8 +14,8 @@
         android:id="@+id/txt_add_staff_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cashier name"
-        android:textColor="@color/app_default_color"
+        android:text="Staff name"
+        android:textColor="?attr/colorPrimary"
         android:textSize="@dimen/text_size" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -31,7 +31,7 @@
             android:background="@drawable/buy_button"
             android:ems="15"
             android:hint="Enter staff name"
-            android:inputType="textPersonName"
+            android:inputType="textCapWords"
             android:maxLines="1" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -40,8 +40,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_10"
-        android:text="Cashier username"
-        android:textColor="@color/app_default_color"
+        android:text="Staff username"
+        android:textColor="?attr/colorPrimary"
         android:textSize="@dimen/text_size" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -68,8 +68,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_10"
-        android:text="Cashier password"
-        android:textColor="@color/app_default_color"
+        android:text="Staff password"
+        android:textColor="?attr/colorPrimary"
         android:textSize="@dimen/text_size" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -86,7 +86,7 @@
             android:background="@drawable/buy_button"
             android:ems="15"
             android:hint="Enter staff password"
-            android:inputType="phone"
+            android:inputType="textPassword"
             android:maxLength="15"
             android:maxLines="1" />
     </com.google.android.material.textfield.TextInputLayout>

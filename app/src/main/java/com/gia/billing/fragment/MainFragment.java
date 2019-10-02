@@ -99,7 +99,7 @@ public class MainFragment extends Fragment {
                     if (id_product.length() == 0) {
                         product_id.setError("Select the product");
                     } else {
-                        no_of_items_added=no_of_items_added+1;
+                        no_of_items_added = no_of_items_added + 1;
                         Intent intent = new Intent();
                         String product_code = txt_product_code.getText().toString();
                         intent.putExtra("Code", product_code);
@@ -127,34 +127,34 @@ public class MainFragment extends Fragment {
             });
 
             product_quantity_increament.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        if (products==null){
-                            return;
-                        }
-                        String item_quantity = product_quantity.getText().toString();
-                        int plus = Integer.valueOf(item_quantity);
+                @Override
+                public void onClick(View view) {
+                    if (products == null) {
+                        return;
+                    }
+                    String item_quantity = product_quantity.getText().toString();
+                    int plus = Integer.valueOf(item_quantity);
 
-                        if (plus <= 4) {
-                            plus = plus + 1;
+                    if (plus <= 4) {
+                        plus = plus + 1;
 
-                            String mrp_item_price = mrp_price.getText().toString();
+                        String mrp_item_price = mrp_price.getText().toString();
 //                            String mrp_item = mrp_item_price.replaceAll("[^0-9]", "");
-                            float item_price = products.getPrice() * plus;
+                        float item_price = products.getPrice() * plus;
 
-                            product_quantity.setText(String.valueOf(plus));
-                            product_price.setText("₹ " + String.valueOf(item_price));
-                        }
+                        product_quantity.setText(String.valueOf(plus));
+                        product_price.setText("₹ " + String.valueOf(item_price));
+                    }
                      /*else{
                         Snackbar.make(view, "Limit reached", Snackbar.LENGTH_SHORT).show();
                     }*/
-                    }
-                });
+                }
+            });
 
             product_quantity_decreament.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (products==null){
+                    if (products == null) {
                         return;
                     }
                     String item_quantity = product_quantity.getText().toString();
@@ -231,11 +231,11 @@ public class MainFragment extends Fragment {
                 public void onClick(View view) {
 
                     LayoutInflater layoutInflater = LayoutInflater.from(getContext());
-                    View product_view = layoutInflater.inflate(R.layout.fragment_product, null);
+                    View product_view = layoutInflater.inflate(R.layout.products_popup, null);
                     AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                     builder.setView(product_view);
 
-                    final ListView productItems_list = product_view.findViewById(R.id.productItems_list);
+                    final ListView productItems_list = product_view.findViewById(R.id.products_list);
                     final AlertDialog alertDialog = builder.create();
                     alertDialog.show();
                     alertDialog.getWindow().setBackgroundDrawableResource(R.drawable.button_default);
@@ -253,7 +253,7 @@ public class MainFragment extends Fragment {
                             txt_product_code.setText(products.getCode());
                             String mrp = String.valueOf(products.getPrice());
                             product_quantity.setText("1");
-                            mrp_price.setText("₹ "+mrp);
+                            mrp_price.setText("₹ " + mrp);
                             product_price.setText("₹ " + mrp);
                             alertDialog.dismiss();
                         }
@@ -294,15 +294,17 @@ public class MainFragment extends Fragment {
             cart = cartArrayList.get(i);
             Products products = cart.getProducts();
             int invoice_no = Integer.parseInt(timeStamp);
+            String category = products.getCategory();
+            String sub_category = products.getSub_category();
             String name = products.getName();
             int quantity = cart.getQuantity();
             String quantityType = products.getQuantityType();
             float price = cart.getPrice();
             int noof_quantity = Integer.valueOf(product_quantity.getText().toString());
 
-            boolean isInserted = DatabaseHelper.getInstance(getActivity()).insertProducts(billID, name, quantity, noof_quantity, quantityType, price);
+            boolean isInserted = DatabaseHelper.getInstance(getActivity()).insertProducts(billID, category, sub_category, name, quantity, noof_quantity, quantityType, price);
             if (isInserted == true) {
-                Log.d("Inserting Data into DB", "Code : " + name + " Quantity :: " + quantity + quantityType + " Price :: " + price);
+                Log.d("Inserting Data into DB", "Code : " + category + " " + sub_category + " " + name + " Quantity :: " + quantity + quantityType + " Price :: " + price);
             }
         }
         Toast.makeText(getActivity(), "Item Saved", Toast.LENGTH_SHORT).show();

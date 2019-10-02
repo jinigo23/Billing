@@ -51,12 +51,13 @@ public class SplashActivity extends AppCompatActivity {
 //                boolean isLoggedin = preferences.getBoolean("Logged_in", false);
                 int login = preferences.getInt("Log_in", 0);
 
-                if (phone == null) {
+                /*if (phone == null) {
                     Intent intent = new Intent(SplashActivity.this, SignupActivity.class);
                     startActivity(intent);
                     finish();
                     Log.d("Signup :: ", "Login page " + phone);
-                } else if (login_password == null) {
+                } else*/
+                if (login_password == null) {
                     Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
                     startActivity(intent);
                     finish();

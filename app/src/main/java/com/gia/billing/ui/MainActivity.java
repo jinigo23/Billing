@@ -3,21 +3,18 @@ package com.gia.billing.ui;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import com.gia.billing.fragment.ProductsFragment;
 import com.gia.billing.R;
 import com.gia.billing.adapter.ViewPagerAdapter;
 import com.gia.billing.fragment.AccountFragment;
 import com.gia.billing.fragment.BillFragment;
-import com.gia.billing.fragment.CartFragment;
 import com.gia.billing.fragment.DashboardFragment;
 import com.gia.billing.fragment.MainFragment;
 import com.gia.billing.helper.DatabaseHelper;
@@ -61,8 +58,8 @@ public class MainActivity extends AppCompatActivity {
 
         pagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         if (admin == true) {
-//            pagerAdapter.pageFragment(new DashboardFragment(), "Dashboard");
-            pagerAdapter.pageFragment(new MainFragment(), "Products");
+            pagerAdapter.pageFragment(new DashboardFragment(), "Dashboard");
+            pagerAdapter.pageFragment(new ProductsFragment(), "Products");
             pagerAdapter.pageFragment(new BillFragment(), "Invoice");
             pagerAdapter.pageFragment(new AccountFragment(), "Account");
         } else {

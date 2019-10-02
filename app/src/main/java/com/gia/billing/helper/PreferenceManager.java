@@ -3,12 +3,25 @@ package com.gia.billing.helper;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ListView;
+import android.widget.PopupMenu;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.gia.billing.R;
 import com.gia.billing.root.MyApplication;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class PreferenceManager {
@@ -100,4 +113,40 @@ public class PreferenceManager {
     public void toastData(String data) {
         Toast.makeText(MyApplication.getApplication().getApplicationContext(), data, Toast.LENGTH_SHORT).show();
     }
+
+    public void popupMenu(View view, final TextInputEditText inputEditText, int menu_id) {
+        PopupMenu popupMenu = new PopupMenu(MyApplication.getApplication(), view);
+        popupMenu.getMenuInflater().inflate(menu_id, popupMenu.getMenu());
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                inputEditText.setText(menuItem.getTitle());
+                return true;
+            }
+        });
+    }
+
+    public void popupMenu(View view, final TextView textView, int menu_id) {
+        PopupMenu popupMenu = new PopupMenu(MyApplication.getApplication(), view);
+        popupMenu.getMenuInflater().inflate(menu_id, popupMenu.getMenu());
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                textView.setText(menuItem.getTitle());
+                return true;
+            }
+        });
+    }
+    public void popupMenu(View view, final ImageButton imageButton, int menu_id) {
+        PopupMenu popupMenu = new PopupMenu(MyApplication.getApplication(), view);
+        popupMenu.getMenuInflater().inflate(menu_id, popupMenu.getMenu());
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+//                imageButton.setText(menuItem.getTitle());
+                return true;
+            }
+        });
+    }
+
 }

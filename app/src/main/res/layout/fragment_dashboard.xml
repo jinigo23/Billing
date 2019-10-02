@@ -19,6 +19,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Staff"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_18"/>
+
         <ImageView
             android:id="@+id/filter_img"
             android:layout_width="wrap_content"
@@ -31,14 +38,15 @@
     </androidx.appcompat.widget.Toolbar>
 
     <ListView
-        android:id="@+id/staff_list_view"
+        android:id="@+id/emp_list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="@dimen/margin_5"
+        android:divider="@null"
         android:layout_below="@id/dashboard_toolbar"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/add_staff_floatingActionButton"
+        android:id="@+id/add_emp_floatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"

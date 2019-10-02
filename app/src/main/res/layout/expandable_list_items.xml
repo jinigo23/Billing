@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/margin_5"
+    android:layout_marginRight="@dimen/margin_5"
+    app:cardCornerRadius="@dimen/margin_5"
+    app:cardUseCompatPadding="true" >
+
+    <TextView
+        android:id="@+id/expand_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_20"
+        android:gravity="center_vertical"
+        android:padding="@dimen/margin_10"
+        android:text="TextView"
+        android:textColor="@color/app_default_color"
+        android:textSize="@dimen/text_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/invoice_item_name" />
+</androidx.cardview.widget.CardView>

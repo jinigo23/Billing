@@ -33,14 +33,14 @@ public class AppDataManager {
 
 
     private AppDataManager() {
-        add("SGEO", new Products("Saffola Gold Edible Oil", R.drawable.saffola_oil, "ml", 1000, 139));
-        add("LPR", new Products("Loose Ponni Boiled Rice", R.drawable.ponni_rice, "g", 1000, 60));
-        add("FMO", new Products("Fortune Kachi Ghani Mustard Oil", R.drawable.fortune_mustard_oil, "ml", 1000, 125));
-        add("NCR", new Products("Namdharis Chiroti Rava", R.drawable.chiroti_rava, "g", 1000, 55));
-        add("ACG", new Products("Aashirvaad Svasti Cow Ghee", R.drawable.cow_ghee, "g", 200, 124));
-        add("NDC", new Products("Namdhari's Dairy Curd", R.drawable.nd_plain_curd, "ml", 500, 25));
-        add("DTNM", new Products("Dairy Tales Namdhari Farm Fresh Cow Milk", R.drawable.namdhari_bottle_milk, "ml", 1000, 75));
-        add("DTGY", new Products("Dairy Tales Greek Yogurt Alphonso Mango", R.drawable.mango_greek_yogurt, "g", 100, 40));
+        add("SGEO", new Products("Groceries", "Oil & Ghee","Saffola Gold Edible Oil", R.drawable.saffola_oil, "ml", 1000, 139));
+        add("LPR", new Products("Groceries", "Rice & Rice products","Loose Ponni Boiled Rice", R.drawable.ponni_rice, "g", 1000, 60));
+        add("FMO", new Products("Groceries", "Oil & Ghee","Fortune Kachi Ghani Mustard Oil", R.drawable.fortune_mustard_oil, "ml", 1000, 125));
+        add("NCR", new Products("Groceries", "Rice & Rice products","Namdharis Chiroti Rava", R.drawable.chiroti_rava, "g", 1000, 55));
+        add("ACG", new Products("Groceries", "Oil & Ghee","Aashirvaad Svasti Cow Ghee", R.drawable.cow_ghee, "g", 200, 124));
+        add("NDC", new Products("Milk & Diary products", "Curd","Namdhari's Dairy Curd", R.drawable.nd_plain_curd, "ml", 500, 25));
+        add("DTNM", new Products("Milk & Diary products", "Milk","Dairy Tales Namdhari Farm Fresh Cow Milk", R.drawable.namdhari_bottle_milk, "ml", 1000, 75));
+        add("DTGY", new Products("Milk & Diary products", "Curd","Dairy Tales Greek Yogurt Alphonso Mango", R.drawable.mango_greek_yogurt, "g", 100, 40));
 
         /*add("PR", new Products("Ponni Rice", "g", 1000, 40));
         add("TR", new Products("Toppi Rice", "g", 1000, 30));
@@ -86,7 +86,7 @@ public class AppDataManager {
     }
 
 
-    private void add(String code, Products product) {
+    public void add(String code, Products product) {
         product.setCode(code);
         itemList.put(code, product);
     }

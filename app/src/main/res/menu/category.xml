@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/groceries"
+        android:title="Groceries" />
+    <item
+        android:id="@+id/milk_diary"
+        android:title="Milk and Diary" />
+    <item
+        android:id="@+id/vegetables"
+        android:title="Vegetables" />
+    <item
+        android:id="@+id/fruits"
+        android:title="Fruits" />
+    <item
+        android:id="@+id/beverages"
+        android:title="Beverages" />
+</menu>

@@ -14,7 +14,12 @@ import androidx.fragment.app.Fragment;
 
 import com.gia.billing.AddStaffActivity;
 import com.gia.billing.R;
+import com.gia.billing.adapter.EmployeeAdapter;
+import com.gia.billing.helper.DatabaseHelper;
+import com.gia.billing.model.Employee;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,6 +33,8 @@ public class DashboardFragment extends Fragment {
     //    private String ;
     Intent intent;
     private Toolbar dashboard_toolbar;
+    private ListView emp_listview;
+    private ArrayList<Employee> emp_list;
 
     public DashboardFragment() {
         // Required empty public constructor
@@ -46,7 +53,7 @@ public class DashboardFragment extends Fragment {
             activity.setSupportActionBar(dashboard_toolbar);
             dashboard_toolbar.setTitle("Staff list");
 
-            add_staff_floatingActionButton = contentView.findViewById(R.id.add_staff_floatingActionButton);
+            add_staff_floatingActionButton = contentView.findViewById(R.id.add_emp_floatingActionButton);
             add_staff_floatingActionButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -54,6 +61,12 @@ public class DashboardFragment extends Fragment {
                     getActivity().startActivity(intent);
                 }
             });
+
+            emp_list = DatabaseHelper.getInstance(getActivity()).get_emp_list();
+            emp_listview = (ListView) contentView.findViewById(R.id.emp_list_view);
+            EmployeeAdapter employeeAdapter = new EmployeeAdapter(getActivity(), emp_list);
+            emp_listview.setAdapter(employeeAdapter);
+
         }
 
         return contentView;

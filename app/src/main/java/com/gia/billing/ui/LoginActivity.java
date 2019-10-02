@@ -57,8 +57,11 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 //                String phone = sharedPreferences.getString("Phone_Number", null);
-                String phone = PreferenceManager.getInstance().getString("Phone_Number");
-                String password = PreferenceManager.getInstance().getString("User_Password");
+                /*String phone = PreferenceManager.getInstance().getString("Phone_Number");
+                String password = PreferenceManager.getInstance().getString("User_Password");*/
+
+                String phone = "9999988888";
+                String password = "mmmmmm";
 
                 String user_phone = login_phone.getText().toString().trim();
                 String user_password = login_password.getText().toString().trim();

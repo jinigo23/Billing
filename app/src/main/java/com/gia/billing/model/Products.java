@@ -2,6 +2,8 @@ package com.gia.billing.model;
 
 public class Products {
 
+    private String category;
+    private String sub_category;
     private String code;
     private String name;
     private int image;
@@ -9,12 +11,30 @@ public class Products {
     private int quantity;
     private float price;
 
-    public Products(String name, int image, String quantityType, int quantity, float price) {
+    public Products(String category, String sub_category, String name, int image, String quantityType, int quantity, float price) {
         this.name = name;
+        this.category = category;
+        this.sub_category = sub_category;
         this.image = image;
         this.quantityType = quantityType;
         this.quantity = quantity;
         this.price = price;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getSub_category() {
+        return sub_category;
+    }
+
+    public void setSub_category(String sub_category) {
+        this.sub_category = sub_category;
     }
 
     public String getCode() {

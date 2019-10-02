@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/margin_5"
+    android:layout_marginRight="@dimen/margin_5"
+    app:cardCornerRadius="@dimen/margin_5"
+    app:cardUseCompatPadding="true" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin_10">
+
+        <TextView
+            android:id="@+id/emp_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="60dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/product_padding_left"
+            android:padding="@dimen/margin_5"
+            android:text="Name"
+            android:textColor="@color/app_default_color"
+            android:textSize="@dimen/text_size"/>
+
+        <TextView
+            android:id="@+id/emp_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:padding="@dimen/margin_5"
+            android:text="Phone"
+            android:textColor="@color/app_default_color"
+            android:textSize="@dimen/text_size"
+            android:layout_alignStart="@id/emp_name"
+            android:layout_below="@id/emp_name"/>
+
+        <TextView
+            android:id="@+id/emp_index"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/product_padding_left"
+            android:padding="@dimen/margin_5"
+            android:text="Index"
+            android:textColor="@color/app_default_color"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
